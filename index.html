@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redmi 5G - Landing Page</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Poppins", sans-serif; line-height: 1.6; background: #fafafa; color: #222; overflow-x: hidden; }
+    h1,h2,h3 { font-weight: 700; }
+    a { text-decoration: none; cursor: pointer; }
+
+    /* Utility */
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 70px 20px; }
+
+    /* Navbar */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 50px; background: rgba(0,0,0,0.3);
+      position: absolute; top: 0; left: 0; right: 0; z-index: 1000;
+    }
+    nav .logo { font-size: 1.5rem; font-weight: bold; color: white; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { color: white; font-weight: 500; transition: 0.3s; }
+    nav ul li a:hover { color: #ffeb3b; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #7f00ff, #e100ff, #00c9ff);
+      background-size: 300% 300%; animation: gradientShift 8s ease infinite;
+      color: white; text-align: center; padding: 140px 20px 100px;
+      border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;
+      position: relative;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; animation: fadeDown 1s ease; }
+    .hero p { font-size: 1.2rem; margin-bottom: 20px; animation: fadeUp 1.2s ease; }
+    .hero .cta {
+      background: white; color: #7f00ff; font-weight: bold;
+      padding: 14px 32px; border-radius: 40px;
+      display: inline-block; transition: 0.3s; animation: popIn 1.5s ease;
+    }
+    .hero .cta:hover { transform: scale(1.1); background: #f8f8f8; }
+    .offer { margin-top: 25px; font-size: 1.1rem; font-weight: bold; color: #ffeb3b; }
+    .countdown { color: #fff; font-weight: bold; margin-top: 5px; }
+
+    /* Product Showcase */
+    .product {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px;
+    }
+    .product img {
+      width: 340px; max-width: 100%;
+      border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      animation: floatPhone 4s ease-in-out infinite;
+    }
+    .product .info { flex: 1; animation: fadeLeft 1s ease; }
+    .product .info h2 { font-size: 2rem; margin-bottom: 15px; }
+    .product .info p { font-size: 1.1rem; margin-bottom: 15px; }
+    .product .highlights { list-style: none; padding-left: 15px; }
+    .product .highlights li { margin: 8px 0; }
+
+    /* Features */
+    .features { background: linear-gradient(135deg,#ffecd2,#fcb69f); }
+    .features h2 { text-align: center; margin-bottom: 40px; color: #333; }
+    .grid {
+      display: grid; gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .feature {
+      background: white; padding: 25px; border-radius: 20px; text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: 0.4s; transform: translateY(20px); opacity: 0;
+    }
+    .feature.show { transform: translateY(0); opacity: 1; }
+    .feature h3 { margin: 10px 0; color: #e100ff; }
+    .features p.loved { text-align: center; margin-top: 30px; font-weight: 500; color: #444; }
+
+    /* Pricing */
+    .pricing { text-align: center; background: linear-gradient(135deg,#a1c4fd,#c2e9fb); padding: 80px 20px; }
+    .pricing h2 { margin-bottom: 40px; color:#222; }
+    .plans { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+    .plan {
+      background: white; padding: 30px; border-radius: 20px; width: 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .plan:hover { transform: translateY(-10px); }
+    .plan h3 { margin-bottom: 10px; color: #7f00ff; }
+    .plan ul { list-style: none; margin: 15px 0; padding: 0; text-align: left; }
+    .plan ul li { margin: 6px 0; }
+    .price-tag { font-size: 2rem; color: #7f00ff; font-weight: bold; }
+    .buy-btn {
+      display: inline-block; margin-top: 15px;
+      background: #7f00ff; color: white; padding: 12px 28px;
+      border-radius: 40px; font-size: 1rem; transition: 0.3s;
+    }
+    .buy-btn:hover { transform: scale(1.1); background: #5800cc; }
+    .badge { background: #ff4081; color: white; padding: 4px 8px; font-size: 0.8rem; border-radius: 6px; margin-left: 6px; }
+    .urgency { margin-top: 20px; font-weight: bold; color: #d32f2f; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 40px 20px;
+      background: linear-gradient(90deg,#ff758c,#ff7eb3); color: white;
+      margin-top: 60px;
+    }
+    .footer-links { margin: 15px 0; display: flex; flex-direction: column; gap: 8px; }
+    .social { margin: 20px 0; }
+    .social a { margin: 0 10px; color: white; font-size: 1.2rem; transition: 0.3s; }
+    .social a:hover { color: #ffeb3b; }
+    .copyright { font-size: 0.85rem; margin-top: 10px; }
+
+    /* Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-30px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeLeft { from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);} }
+    @keyframes popIn { from{opacity:0;transform:scale(0.5);} to{opacity:1;transform:scale(1);} }
+    @keyframes floatPhone { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+
+    /* Responsive */
+    @media(max-width:768px){
+      nav { flex-direction: column; gap: 15px; }
+      .hero h1{font-size:2rem;}
+      .product{flex-direction:column; text-align:center;}
+      .product .info{text-align:center;}
+      .plans { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Redmi 5G</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1>Redmi 5G — Power Meets Perfection</h1>
+    <p>Vibrant design. Blazing performance. Built to impress.</p>
+    <a href="#pricing" class="cta">Order Yours Today</a>
+    <div class="offer">🔥 Launch Offer: Get 20% Off – Grab Yours Today!</div>
+    <div class="countdown" id="countdown">Offer ends in 03:12:45</div>
+  </section>
+
+  <!-- Product Showcase -->
+  <section class="product container">
+    <img src="phone.jpg" alt="Redmi 5G Phone">
+    <div class="info">
+      <h2>Why Choose Redmi 5G?</h2>
+      <p>Enjoy a brilliant AMOLED display, lightning-fast processor, all-day battery, and a pro-grade camera system.</p>
+      <ul class="highlights">
+        <li>⚡ Snapdragon-powered blazing 5G performance</li>
+        <li>🔋 5000mAh Battery + 65W Fast Charging</li>
+        <li>📱 120Hz AMOLED Edge-to-Edge Display</li>
+        <li>🔒 Multi-layer Security with Face ID + Fingerprint</li>
+        <li>✅ 1-Year Warranty & Premium Support</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <h2>Why You’ll Love Redmi 5G</h2>
+    <div class="grid container">
+      <div class="feature"><h3>⚡ Performance</h3><p>Next-gen chipset for ultimate speed.</p></div>
+      <div class="feature"><h3>📷 Camera</h3><p>AI-enhanced photos in any lighting.</p></div>
+      <div class="feature"><h3>🔋 Battery</h3><p>Long-lasting with fast charging.</p></div>
+      <div class="feature"><h3>🌐 Connectivity</h3><p>5G + WiFi 6 for seamless access.</p></div>
+      <div class="feature"><h3>🎨 Design</h3><p>Colorful, slim, and premium finish.</p></div>
+      <div class="feature"><h3>🔒 Security</h3><p>Face unlock + fingerprint reader.</p></div>
+    </div>
+    <p class="loved">❤️ Loved by thousands of creators and professionals worldwide.</p>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <h2>Exclusive Launch Pricing</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Standard</h3>
+        <p class="price-tag">$599</p>
+        <ul>
+          <li>128GB Storage</li>
+          <li>Dual Camera</li>
+          <li>Fast Charging</li>
+        </ul>
+        <a href="#" class="buy-btn">Choose Standard</a>
+      </div>
+      <div class="plan">
+        <h3>Pro <span class="badge">Best Value</span></h3>
+        <p class="price-tag">$799</p>
+        <ul>
+          <li>256GB Storage</li>
+          <li>Quad Camera 108MP</li>
+          <li>65W Super Fast Charging</li>
+          <li>1-Year Warranty</li>
+        </ul>
+        <a href="#" class="buy-btn">Choose Pro</a>
+      </div>
+      <div class="plan">
+        <h3>Ultra</h3>
+        <p class="price-tag">$999</p>
+        <ul>
+          <li>512GB Storage</li>
+          <li>Quad Camera 108MP + 8K Video</li>
+          <li>Wireless + 65W Charging</li>
+          <li>2-Year Warranty</li>
+        </ul>
+        <a href="#" class="buy-btn">Choose Ultra</a>
+      </div>
+    </div>
+    <p class="urgency">⚠️ Offer ends in 3 days. Don’t miss out!</p>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <h3>Contact Us</h3>
+    <div class="footer-links">
+      <p>Email: support@redmi5g.com</p>
+      <p>Phone: +1 (800) 123-4567</p>
+      <p>Address: 123 Tech Street, Silicon Valley, CA</p>
+    </div>
+    <div class="social">
+      <a href="#">📸</a>
+      <a href="#">👍</a>
+      <a href="#">🐦</a>
+      <a href="#">💼</a>
+    </div>
+    <div class="copyright">© 2025 Redmi 5G Inc. All Rights Reserved.</div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click',function(e){
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:"smooth"});
+      });
+    });
+
+    // Reveal Features on Scroll
+    const features=document.querySelectorAll('.feature');
+    const revealOnScroll=()=>{ features.forEach(f=>{ const rect=f.getBoundingClientRect(); if(rect.top<window.innerHeight-50){ f.classList.add('show'); } }); };
+    window.addEventListener('scroll',revealOnScroll); revealOnScroll();
+
+    // Countdown Timer (example: 3 hours)
+    const countdown=document.getElementById('countdown');
+    let time=3*60*60; // 3 hours
+    setInterval(()=>{
+      let h=Math.floor(time/3600);
+      let m=Math.floor((time%3600)/60);
+      let s=time%60;
+      countdown.textContent=`Offer ends in ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      if(time>0) time--; 
+    },1000);
+  </script>
+</body>
+</html>
